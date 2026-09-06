@@ -1,0 +1,35 @@
+{
+  "repeater": {
+    "address": "192.168.178.25",
+    "user": "",
+    "password": "DEIN_REPEATER_PASSWORT"
+  },
+  "mqtt": {
+    "host": "192.168.178.2",
+    "port": 1883,
+    "username": "DEIN_MQTT_USER",
+    "password": "DEIN_MQTT_PASSWORT"
+  },
+
+  "box": {
+    "address": "192.168.178.1",
+    "user": "",
+    "password": "DEIN_BOX_PASSWORT"
+  },
+  "publish_client_list": true,
+
+  "poll_interval": 30,
+  "consider_home": 180,
+  "name_refresh": 300,
+
+  "devices": {
+    "handy_person1": {
+      "name": "Handy Person 1",
+      "macs": ["AA:BB:CC:11:22:33"]
+    },
+    "handy_person2": {
+      "name": "Handy Person 2",
+      "macs": ["AA:BB:CC:44:55:66"]
+    }
+  }
+}

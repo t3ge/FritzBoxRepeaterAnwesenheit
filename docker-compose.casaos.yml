@@ -1,0 +1,26 @@
+# CasaOS-freundlich: kein 'docker build' noetig.
+# Nutzt das offizielle python-Image, installiert die Pakete beim Start und
+# fuehrt das Skript aus. Alle Dateien liegen in EINEM Host-Ordner, der nach
+# /app gemountet wird (repeater_presence.py, requirements.txt, config.json).
+#
+# 1) Ordner auf dem CasaOS-Host anlegen, z.B. /DATA/repeater-presence
+# 2) repeater_presence.py, requirements.txt und die ausgefuellte config.json
+#    dort hineinlegen (config.json: chmod 600)
+# 3) In CasaOS:  Apps -> Eigene App installieren -> "Import" / Compose einfuegen
+#    (oder per Terminal:  docker compose -f docker-compose.casaos.yml up -d)
+
+services:
+  repeater-presence:
+    image: python:3.12-slim
+    container_name: repeater-presence
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      - PRESENCE_CONFIG=/app/config.json
+      - PIP_ROOT_USER_ACTION=ignore
+    volumes:
+      - /DATA/repeater-presence:/app
+    command:
+      - sh
+      - -c
+      - pip install --no-cache-dir -r requirements.txt && python repeater_presence.py

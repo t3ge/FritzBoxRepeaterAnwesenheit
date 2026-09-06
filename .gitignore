@@ -1,0 +1,11 @@
+# Echte Konfiguration mit Passwörtern/MACs NIE committen:
+config.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Diverses
+*.log
+.DS_Store

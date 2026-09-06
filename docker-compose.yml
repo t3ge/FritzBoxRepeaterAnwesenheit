@@ -1,0 +1,8 @@
+services:
+  repeater-presence:
+    build: .
+    # alternativ statt build ein fertiges Image bauen: docker build -t repeater-presence .
+    container_name: repeater-presence
+    restart: unless-stopped
+    volumes:
+      - ./config.json:/config/config.json:ro

@@ -1,0 +1,22 @@
+[Unit]
+Description=FRITZ!Repeater WLAN presence -> Home Assistant (MQTT)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Pfade ggf. anpassen:
+WorkingDirectory=/opt/repeater-presence
+ExecStart=/opt/repeater-presence/venv/bin/python /opt/repeater-presence/repeater_presence.py
+Environment=PRESENCE_CONFIG=/opt/repeater-presence/config.json
+Restart=always
+RestartSec=15
+# Etwas Haertung (config.json enthaelt Passwoerter -> chmod 600):
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/repeater-presence
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
